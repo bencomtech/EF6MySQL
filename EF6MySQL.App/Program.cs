@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace EF6MySQL.App
 {
@@ -10,6 +6,10 @@ namespace EF6MySQL.App
     {
         static void Main(string[] args)
         {
+            Application application = new Application();
+            application.Run();
+
+            Console.ReadKey();
         }
     }
 }

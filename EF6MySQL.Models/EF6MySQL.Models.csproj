@@ -4,17 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{DB7BF20E-85F5-4C4D-B66F-675D7E70B422}</ProjectGuid>
-    <OutputType>Exe</OutputType>
-    <RootNamespace>EF6MySQL.App</RootNamespace>
-    <AssemblyName>EF6MySQL.App</AssemblyName>
+    <ProjectGuid>{C4613036-65E5-453B-A922-51F1D4634B72}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>EF6MySQL.Models</RootNamespace>
+    <AssemblyName>EF6MySQL.Models</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -24,7 +23,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -62,6 +60,8 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -70,19 +70,57 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Application.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="Entities\amphure.cs">
+      <DependentUpon>MasterDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\district.cs">
+      <DependentUpon>MasterDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\MasterDataModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MasterDataModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\MasterDataModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MasterDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\MasterDataModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MasterDataModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\province.cs">
+      <DependentUpon>MasterDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <EntityDeploy Include="Entities\MasterDataModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>MasterDataModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Entities\MasterDataModel.edmx.diagram">
+      <DependentUpon>MasterDataModel.edmx</DependentUpon>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\EF6MySQL.Models\EF6MySQL.Models.csproj">
-      <Project>{c4613036-65e5-453b-a922-51f1d4634b72}</Project>
-      <Name>EF6MySQL.Models</Name>
-    </ProjectReference>
+    <Content Include="Entities\MasterDataModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>MasterDataModel.edmx</DependentUpon>
+      <LastGenOutput>MasterDataModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Entities\MasterDataModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>MasterDataModel.edmx</DependentUpon>
+      <LastGenOutput>MasterDataModel.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
